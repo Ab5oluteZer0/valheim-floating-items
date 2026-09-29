@@ -15,7 +15,7 @@ namespace FloatingItems
     {
         public const string PluginGUID = "com.michal.valheim.floatingitems";
         public const string PluginName = "Floating Items";
-        public const string PluginVersion = "0.1.0";
+        public const string PluginVersion = "1.0.0";
 
         internal static ManualLogSource Log;
         private static ConfigEntry<string> _excludedItems;
@@ -24,6 +24,9 @@ namespace FloatingItems
         private void Awake()
         {
             Log = Logger;
+            // Gra prosi mody o ustawienie tej flagi: w menu pojawia sie napis, ze gra jest
+            // zmodowana (Iron Gate wymaga oznaczania modow jako nieoficjalnych).
+            Game.isModded = true;
             _excludedItems = Config.Bind("General", "ExcludedItems", "",
                 "Comma-separated prefab names of items that should keep sinking, e.g. \"Coins, IronScrap\". " +
                 "Applies to items dropped after the change.");

@@ -4,6 +4,10 @@ BepInEx mod for [Valheim](https://www.valheimgame.com/) that makes dropped
 items float on water instead of sinking to the bottom - lose your ore or your
 sword over the side of the boat and you can still fish it out.
 
+> **Unofficial mod.** This is a fan-made mod, not affiliated with or endorsed by
+> Iron Gate. It marks your game as modded (the game shows this in the main menu),
+> as Iron Gate asks mod authors to do.
+
 ## What it does
 
 - Every dropped item floats on water (and on tar), bobbing on the surface the
