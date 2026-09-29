@@ -1,0 +1,31 @@
+[config]
+schemaVersion = "0.0.1"
+
+[package]
+namespace = "Ab5oluteZer0"
+name = "FloatingItems"
+# Nadpisywane numerem z tagu wydania przy publikacji (workflow thunderstore.yml).
+versionNumber = "1.0.0"
+description = "Dropped items float on water instead of sinking - using the game's own buoyancy, just like wood."
+websiteUrl = "https://github.com/Ab5oluteZer0/valheim-floating-items"
+containsNsfwContent = false
+
+[package.dependencies]
+"denikson-BepInExPack_Valheim" = "5.4.2351"
+
+[build]
+icon = "./icon.png"
+readme = "./README.md"
+outdir = "./build"
+
+[[build.copy]]
+source = "./dist"
+target = ""
+
+[publish]
+repository = "https://thunderstore.io"
+communities = ["valheim"]
+
+[publish.categories]
+# "ai-generated": zasada Thunderstore dla paczek, ktorych kod powstal z pomoca AI.
+valheim = ["mods", "tweaks", "client-side", "ai-generated"]
