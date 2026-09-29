@@ -85,6 +85,12 @@ The build automatically copies the built DLL into
   and off from many items would toggle the template itself. The splash effect
   is just a list of prefabs to spawn, so it is shared safely.
 
+## Support
+
+All my mods are free and will stay free. If you enjoy them and want to say
+thanks, you can leave a voluntary tip via [PayPal](https://www.paypal.com/ncp/payment/4JQUSHTJGBAG6) - it doesn't
+unlock anything, it just helps me keep making mods.
+
 ## License
 
 MIT - see [LICENSE](LICENSE).
