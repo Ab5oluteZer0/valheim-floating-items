@@ -29,7 +29,7 @@ again, because the game creates them anew.
 
 ## Configuration
 
-`BepInEx\config\com.michal.valheim.floatingitems.cfg`:
+`BepInEx\config\com.ab5olutezer0.valheim.floatingitems.cfg`:
 
 | Setting | Default | Description |
 |---|---|---|

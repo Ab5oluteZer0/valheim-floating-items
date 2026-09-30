@@ -13,13 +13,35 @@ namespace FloatingItems
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     public class Plugin : BaseUnityPlugin
     {
-        public const string PluginGUID = "com.michal.valheim.floatingitems";
+        public const string PluginGUID = "com.ab5olutezer0.valheim.floatingitems";
         public const string PluginName = "Floating Items";
-        public const string PluginVersion = "1.0.0";
+        public const string PluginVersion = "1.0.1";
 
         internal static ManualLogSource Log;
         private static ConfigEntry<string> _excludedItems;
         private static HashSet<string> _excluded = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        // Do wersji 1.0.0 identyfikator wtyczki zaczynal sie od "com.michal". Plik konfiguracji
+        // nosi nazwe identyfikatora, wiec stary plik przenosimy pod nowa nazwe - gracz nie traci
+        // ustawien. Wywolywane przed pierwszym Config.Bind.
+        private const string LegacyPluginGUID = "com.michal.valheim.floatingitems";
+
+        private void MigrateLegacyConfig()
+        {
+            string legacyPath = System.IO.Path.Combine(Paths.ConfigPath, LegacyPluginGUID + ".cfg");
+            if (System.IO.File.Exists(Config.ConfigFilePath) || !System.IO.File.Exists(legacyPath))
+                return;
+            try
+            {
+                System.IO.File.Move(legacyPath, Config.ConfigFilePath);
+                Config.Reload();
+                Logger.LogInfo($"Przeniesiono ustawienia: {legacyPath} -> {Config.ConfigFilePath}");
+            }
+            catch (Exception e)
+            {
+                Logger.LogWarning($"Nie udalo sie przeniesc ustawien ({legacyPath}): {e}");
+            }
+        }
 
         private void Awake()
         {
@@ -27,6 +49,7 @@ namespace FloatingItems
             // Gra prosi mody o ustawienie tej flagi: w menu pojawia sie napis, ze gra jest
             // zmodowana (Iron Gate wymaga oznaczania modow jako nieoficjalnych).
             Game.isModded = true;
+            MigrateLegacyConfig();
             _excludedItems = Config.Bind("General", "ExcludedItems", "",
                 "Comma-separated prefab names of items that should keep sinking, e.g. \"Coins, IronScrap\". " +
                 "Applies to items dropped after the change.");
